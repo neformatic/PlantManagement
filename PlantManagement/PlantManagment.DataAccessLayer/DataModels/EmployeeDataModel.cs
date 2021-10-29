@@ -1,0 +1,18 @@
+﻿using PlantManagment.DataAccessLayer.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace PlantManagment.DataAccessLayer.DataModels
+{
+    public partial class EmployeeDataModel
+    {
+        public int Id { get; set; }
+        public string LastName { get; set; }
+        public int AccountId { get; set; }
+        public int DepartmentId { get; set; }
+        public string Position { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+    }
+}

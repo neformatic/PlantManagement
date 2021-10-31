@@ -1,13 +1,11 @@
 ﻿@model AccountViewModel
-<form method="post" action="~/Account/Authorization">
-    <div class="mb-3">
+<form class="row g-3" method="post" action="~/Account/Authorization">
+    <div class="col-md-3">
         <label for="Login" class="form-label">Login</label>
         <input type="text" class="form-control" name="login" required>
-    </div>
-    <div class="mb-3">
-            <label asp-for="Password"></label><br />
-            <input required type="password" class="form-control" asp-for="Password" />
-            <span asp-validation-for="Password"></span>
-        </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" required><br />
+        @*<span asp-validation-for="Password"></span><br />*@
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>    
 </form>

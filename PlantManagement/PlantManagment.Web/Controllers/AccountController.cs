@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using PlantManagment.BusinessLogic.Services;
-using PlantManagment.DataAccessLayer.Models;
 using PlantManagment.Web.Models;
-using System;
+using PlantManagment.BusinessLogic.Services;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -24,8 +21,13 @@ namespace PlantManagment.Web.Controllers
         [HttpGet]
         public IActionResult Registration()
         {
-            _headOfDepartmentServices.ShowPositionInfo(); // добавить в выпадающий список
-            return View();
+            var positionsList = _headOfDepartmentServices.ShowPositionInfo();
+            List<string> positionNameList = new List<string>();
+            foreach (var item in positionsList)
+            {
+                positionNameList.Add(item.PositionName);          
+            }
+            return View(positionNameList);
         }
         [HttpPost]
         public IActionResult Registration(AccountViewModel model)
@@ -67,7 +69,16 @@ namespace PlantManagment.Web.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
             }
-            return RedirectToAction("index", "home");
+            return RedirectToAction("Employee", "account");
+        }
+        public IActionResult Employee()
+        {
+            return View();
+        }
+
+        public IActionResult HeadOfDepartment()
+        {
+            return View();
         }
     }
 

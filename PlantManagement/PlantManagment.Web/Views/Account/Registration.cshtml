@@ -1,35 +1,25 @@
-﻿@model AccountViewModel
-<form method="post" action="~/Account/Registration">
-    <div class="mb-3">
+﻿@model List<string>
+<form class="row g-3" method="post" action="~/Account/Registration">
+    <div class="col-md-3">
         <label for="Login" class="form-label">Login</label>
         <input type="text" class="form-control" name="login" required>
-    </div>
-    <div class="mb-3">
-            <label asp-for="Password"></label><br />
-            <input required type="password" class="form-control" asp-for="Password" />
-            <span asp-validation-for="Password"></span>
-        </div>
-    <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" required>
         <label for="Surname" class="form-label">Surname</label>
         <input type="text" class="form-control" name="surname" required>
-    </div>
-    <div class="mb-3">
         <label for="Name" class="form-label">Name</label>
         <input type="text" class="form-control" name="name" required>
-    </div>
-    <div class="mb-3">
         <label for="MiddleName" class="form-label">MiddleName</label>
         <input type="text" class="form-control" name="middleName" required>
+        <label for="Position" class="form-label">Position</label>
+        <input type="text" list="products" id="prod" class="form-control" required />
+        <datalist id="products">
+            @foreach (var position in Model)
+            {
+                <option>@position</option>
+            }
+        </datalist>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Выпадающий список
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
 </form>

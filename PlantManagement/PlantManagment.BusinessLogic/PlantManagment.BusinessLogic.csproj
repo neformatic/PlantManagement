@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PlantManagment.DataAccessLayer\PlantManagement.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\PlantManagment.DataAccessLayer\PlantManagment.DataAccessLayer.csproj" />
   </ItemGroup>
 
 </Project>

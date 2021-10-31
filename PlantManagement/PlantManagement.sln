@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantManagement.Presentation", "PlantManagment.Presentation\PlantManagement.Presentation.csproj", "{9A220D8C-0804-4039-95B5-4E92131CD032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantManagment.Presentation", "PlantManagment.Presentation\PlantManagment.Presentation.csproj", "{9A220D8C-0804-4039-95B5-4E92131CD032}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantManagement.BusinessLogic", "PlantManagment.BusinessLogic\PlantManagement.BusinessLogic.csproj", "{CDABAD19-880E-4A5B-BBBA-1695104BC75E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantManagment.BusinessLogic", "PlantManagment.BusinessLogic\PlantManagment.BusinessLogic.csproj", "{CDABAD19-880E-4A5B-BBBA-1695104BC75E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantManagement.DataAccessLayer", "PlantManagment.DataAccessLayer\PlantManagement.DataAccessLayer.csproj", "{CDC8F08B-3276-4761-84E4-BC393294529C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantManagment.DataAccessLayer", "PlantManagment.DataAccessLayer\PlantManagment.DataAccessLayer.csproj", "{CDC8F08B-3276-4761-84E4-BC393294529C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantManagement.Web", "PlantManagment.Web\PlantManagement.Web.csproj", "{7BCE1DC8-4E4C-418C-BC19-DBF100A2AC34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantManagment.Web", "PlantManagment.Web\PlantManagment.Web.csproj", "{7BCE1DC8-4E4C-418C-BC19-DBF100A2AC34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

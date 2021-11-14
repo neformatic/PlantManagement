@@ -77,7 +77,7 @@ namespace PlantManagment.Presentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 266);
+            this.ClientSize = new System.Drawing.Size(467, 266);
             this.Controls.Add(this._employeeListBox);
             this.Controls.Add(this._idDeleteTextBox);
             this.Controls.Add(this._newEmployeeListLabel);

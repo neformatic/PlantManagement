@@ -14,5 +14,7 @@ namespace PlantManagment.BusinessLogic.Interface
         List<PositionModel> GetPositionsList();
         AccountModel GetUserBylogin(string login);
         string GetUserStatusByAccountStatusId(int statusId);
+        string GetRole(int id);
+        int GetUserId(string login);
     }
 }

@@ -1,14 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using PlantManagment.BusinessLogic.Interface;
-using PlantManagment.BusinessLogic.Services;
-using PlantManagment.DataAccessLayer.Models;
+﻿using PlantManagment.BusinessLogic.Interface;
 using PlantManagment.Presentation.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace PlantManagment.Presentation
 {
@@ -16,7 +9,7 @@ namespace PlantManagment.Presentation
     {
         private IEmployeeTaskServices _employeeTask;
         private IUserInfoServices _userInfoServices;
-        int _userId;
+        private int _userId;
 
         public EmployeeForm(IUserInfoServices infoServices, IEmployeeTaskServices taskServices, int id)
         {
@@ -25,7 +18,6 @@ namespace PlantManagment.Presentation
             _employeeTask = taskServices;
             InitializeComponent();
             ShowUsersInfo();
-
         }
 
         private void ShowUsersInfo()
@@ -66,6 +58,6 @@ namespace PlantManagment.Presentation
             TaskModel task = _actualTasksListBox.SelectedItem as TaskModel;
             _userInfoServices.ChangeStatus(task.Id, 2);
             ShowUsersInfo();
-        }   
+        }
     }
 }

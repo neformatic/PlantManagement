@@ -1,0 +1,16 @@
+﻿@model List<ManagerViewModel>
+<form class="row g-3" method="post" action="">
+    <h1>List Employees</h1>
+    <div class="form-group">
+        <select name="employeeId" multiple class="form-control" id="employee" required>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                        <option value="@item.Id">@item.LastName  @item.FirstName  @item.MiddleName  @item.Position </option>
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Dissmiss</button>
+</form>

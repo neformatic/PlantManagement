@@ -1,0 +1,44 @@
+﻿@model List<EmployeeViewModel>
+<form class="row g-3" method="post" action="">
+    <h1>Employees Tasks</h1>
+    <div class="form-group">
+        <label for="newTasks">New Tasks</label>
+        <select name="taskId" multiple class="form-control" id="newTasks" required>
+
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    @if (item.TaskStatus == 0)
+                    {
+                        <option value="@item.Id">@item.Task</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <input type="number" name="newTaskStatus" value="1" hidden />
+    <button type="submit" class="btn btn-primary">Accept</button>
+</form>
+
+<form class="row g-3" method="post" action="">
+    <div class="form-group">
+        <label for="currentTasks">Current Tasks</label>
+        <select name="taskId" multiple class="form-control" id="currentTasks" required>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    @if (item.TaskStatus == 1)
+                    {
+                        <option value="@item.Id">@item.Task</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <input type="number" name="newTaskStatus" value="2" hidden />
+    <button type="submit" class="btn btn-primary">Ready</button>
+</form>
+
+

@@ -1,4 +1,5 @@
 ﻿using PlantManagment.BusinessLogic.Models;
+using PlantManagment.DataAccessLayer.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,6 @@ namespace PlantManagment.BusinessLogic.Interface
         List<EmployeeModel> ShowUserInfo(string department);
         List<ProjectModel> ShowProjectInfo();
         void AddEmployeeTask(string taskEmployee, int projectId, int employeeId);
+        List<EmployeeTasksModel> GetEmployeeTasks();
     }
 }

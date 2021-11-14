@@ -14,5 +14,8 @@ namespace PlantManagment.DataAccessLayer.Interface
         List<PositionDataModel> GetPositionsList();
         AccountDataModel GetUserByLogin(string login);
         string GetUserStatusByAccountStatusId(int statusId);
+        string GetRole(int id);
+        int GetUserId(string login);
+        void SaveUser(string accountLogin, string accountPassword, int accountStatusId);
     }
 }

@@ -26,5 +26,10 @@ namespace PlantManagment.BusinessLogic.Services
             var userId = _employeeRepository.GetEmployeId(id);
             return userId;
         }
+        public int GetEmployeeIdByEmployeeName(string employeeName)
+        {
+            var employeeId = _employeeRepository.GetEmployeeIdByEmployeeName(employeeName);
+            return employeeId;
+        }
     }
 }

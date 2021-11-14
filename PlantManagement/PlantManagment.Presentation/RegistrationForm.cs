@@ -52,10 +52,9 @@ namespace PlantManagment.Presentation
         private void _acceptButton_Click(object sender, EventArgs e)
         {
             var checkAccount = new AccountServices();
-            string emptyString = "";
             try
             {
-                if (_loginTextBox.Text == emptyString || _passwordTextBox.Text == emptyString || _surNameTextBox.Text == emptyString || _firstNameTextBox.Text == emptyString || _middleNameTextBox.Text == emptyString)
+                if (_loginTextBox.Text == string.Empty || _passwordTextBox.Text == string.Empty || _surNameTextBox.Text == string.Empty || _firstNameTextBox.Text == string.Empty || _middleNameTextBox.Text == string.Empty)
                 {
                     MessageBox.Show("Поля пустые!");
                 }

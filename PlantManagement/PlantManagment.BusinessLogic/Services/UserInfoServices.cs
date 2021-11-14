@@ -2,13 +2,10 @@
 using PlantManagment.BusinessLogic.Interface;
 using PlantManagment.BusinessLogic.Mapper;
 using PlantManagment.BusinessLogic.Models;
-using PlantManagment.DataAccessLayer.DataModels;
 using PlantManagment.DataAccessLayer.Interface;
 using PlantManagment.DataAccessLayer.Models;
 using PlantManagment.DataAccessLayer.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PlantManagment.BusinessLogic.Services
 {
@@ -28,7 +25,7 @@ namespace PlantManagment.BusinessLogic.Services
         public List<UserInfoModel> GetUserInfo(int id)
         {
             var info = _userInfoRepository.GetUserInfo(id);
-            var mapped = new List<UserInfoModel>();
+            var mapped = new List<UserInfoModel>(); //лист на лист
             foreach (var i in info)
             {
                 mapped.Add(_mapper.Map<UserInfoModel>(i));

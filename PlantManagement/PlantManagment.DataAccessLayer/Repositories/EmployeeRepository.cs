@@ -17,7 +17,7 @@ namespace PlantManagment.DataAccessLayer.Repositories
         {
             _db = db;
         }
-        public List<Employee> GetUsers()
+        public List<Employee> GetUsers() //procedure
         {
             var userInfo = _db.Employees.FromSqlRaw("EmployeeInfo").ToList();
             return userInfo;
@@ -29,6 +29,12 @@ namespace PlantManagment.DataAccessLayer.Repositories
                           where a.Id == id
                           select u.Id).FirstOrDefault();
             return userId;
+        }
+
+        public int GetEmployeeIdByEmployeeName(string employeeName)
+        {
+           var employeeId = _db.Employees.Where(e => e.LastName + " " + e.FirstName + " " + e.MiddleName == employeeName).Select(p => p.Id).FirstOrDefault();
+            return employeeId;
         }
     }
 }

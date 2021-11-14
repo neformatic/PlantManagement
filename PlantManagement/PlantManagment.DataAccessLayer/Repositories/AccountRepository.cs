@@ -1,4 +1,5 @@
-﻿using PlantManagment.DataAccessLayer.DataModels;
+﻿using Microsoft.EntityFrameworkCore;
+using PlantManagment.DataAccessLayer.DataModels;
 using PlantManagment.DataAccessLayer.Interface;
 using PlantManagment.DataAccessLayer.Models;
 using System.Collections.Generic;
@@ -61,7 +62,7 @@ namespace PlantManagment.DataAccessLayer.Repositories
         }
         public AccountDataModel GetUserByLogin(string login)
         {
-            var userByLogin = _context.Accounts.Where(u => u.AccountLogin == login).Select(u => new AccountDataModel // проекция вернуть датамодель
+            var userByLogin = _context.Accounts.Where(u => u.AccountLogin == login).Select(u => new AccountDataModel
             {
                 AccountLogin = u.AccountLogin,
                 AccountPassword = u.AccountPassword,
@@ -74,7 +75,33 @@ namespace PlantManagment.DataAccessLayer.Repositories
         public string GetUserStatusByAccountStatusId(int statusId)
         {
             var userStatus = _context.AccountStatuses.Where(u => u.StatusId == statusId).Select(u => u.StatusName).SingleOrDefault().ToString();
-            return userStatus; 
+            return userStatus;
+        }
+
+        public string GetRole(int id)
+        {
+            var role = (from u in _context.Accounts
+                        join s in _context.AccountStatuses on u.AccountStatusId equals s.StatusId
+                        where u.Id == id
+                        select s.StatusName).SingleOrDefault();
+            return role;
+        }
+
+        public int GetUserId(string login)
+        {
+            var userId = _context.Accounts.Where(l => l.AccountLogin == login).Select(i => i.Id).FirstOrDefault();
+            return userId;
+        }
+
+        public void SaveUser(string accountLogin, string accountPassword, int accountStatusId)
+        {
+            var userLogin = new Account
+            {
+                AccountLogin = accountLogin,
+                AccountPassword = accountPassword,
+                AccountStatusId = accountStatusId
+            };
+            _context.Accounts.Add(userLogin);
         }
     }
 }

@@ -83,5 +83,12 @@ namespace PlantManagment.BusinessLogic.Services
             _headOfDepartmentRepository.AddEmployeeTask(taskEmployee, projectId, employeeId);
             _db.SaveChanges();
         }
+
+        public List<EmployeeTasksModel> GetEmployeeTasks()
+        {
+            var employeeTasks = _headOfDepartmentRepository.GetEmployeeTasks();
+            var mappedModel = _mapper.Map<List<EmployeeTasksModel>>(employeeTasks);
+            return mappedModel;
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace PlantManagment.BusinessLogic.Interface
     public interface IEmployeeService
     {
         int GetEmployeId(int id);
+        int GetEmployeeIdByEmployeeName(string employeeName);
     }
 }

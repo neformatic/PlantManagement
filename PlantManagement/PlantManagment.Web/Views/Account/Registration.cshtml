@@ -6,13 +6,13 @@
         <label for="Password" class="form-label">Password</label>
         <input type="password" class="form-control" name="password" required>
         <label for="Surname" class="form-label">Surname</label>
-        <input type="text" class="form-control" name="surname" required>
+        <input type="text" class="form-control" name="lastName" required>
         <label for="Name" class="form-label">Name</label>
-        <input type="text" class="form-control" name="name" required>
+        <input type="text" class="form-control" name="firstName" required>
         <label for="MiddleName" class="form-label">MiddleName</label>
         <input type="text" class="form-control" name="middleName" required>
         <label for="Position" class="form-label">Position</label>
-        <input type="text" list="products" id="prod" class="form-control" required />
+        <input type="text" list="products" id="prod" class="form-control" name="position" required />
         <datalist id="products">
             @foreach (var position in Model)
             {
@@ -20,6 +20,6 @@
             }
         </datalist>
         <br />
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Sign up</button>
     </div>
 </form>

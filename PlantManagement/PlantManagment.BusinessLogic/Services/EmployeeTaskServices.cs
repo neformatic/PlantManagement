@@ -2,13 +2,10 @@
 using PlantManagment.BusinessLogic.Interface;
 using PlantManagment.BusinessLogic.Mapper;
 using PlantManagment.BusinessLogic.Models;
-using PlantManagment.DataAccessLayer.DataModels;
 using PlantManagment.DataAccessLayer.Interface;
 using PlantManagment.DataAccessLayer.Models;
 using PlantManagment.DataAccessLayer.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PlantManagment.BusinessLogic.Services
 {
@@ -29,9 +26,9 @@ namespace PlantManagment.BusinessLogic.Services
         {
             var tasks = _employeeTaskRepository.GetTasks();
             var mappedModel = new List<TaskModel>();
-            foreach (var t in tasks)
+            foreach (var item in tasks)
             {
-                mappedModel.Add(_mapper.Map<TaskModel>(t));
+                mappedModel.Add(_mapper.Map<TaskModel>(item));
             }
             return mappedModel;
         }

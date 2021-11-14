@@ -9,5 +9,6 @@ namespace PlantManagment.DataAccessLayer.Interface
     {
         List<Employee> GetUsers();
         int GetEmployeId(int id);
+        int GetEmployeeIdByEmployeeName(string employeeName);
     }
 }

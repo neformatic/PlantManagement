@@ -7,14 +7,15 @@ namespace PlantManagment.DataAccessLayer.Interface
 {
     public interface IHeadOfDepartmentRepository
     {
-        public List<EmployeeDataModel> GetEmployeeList();
-        public void DeleteEmployee(int id);
-        public List<PositionDataModel> GetPositionInfo();
-        public List<DepartmentDataModel> GetDepartmentInfo();
-        public List<EmployeeDataModel> GetUserInfo(string department);
-        public List<ProjectDataModel> GetProjectInfo();
-        public List<EmployeeProjectDataModel> GetEmployeeTask();
-        public void AddEmployeeTask(string task, int projectId, int employeeId);
+        List<EmployeeDataModel> GetEmployeeList();
+        void DeleteEmployee(int id);
+        List<PositionDataModel> GetPositionInfo();
+        List<DepartmentDataModel> GetDepartmentInfo();
+        List<EmployeeDataModel> GetUserInfo(string department);
+        List<ProjectDataModel> GetProjectInfo();
+        List<EmployeeProjectDataModel> GetEmployeeTask();
+        void AddEmployeeTask(string task, int projectId, int employeeId);
+        List<EmployeeTasksDataModel> GetEmployeeTasks();
     }
 }
 

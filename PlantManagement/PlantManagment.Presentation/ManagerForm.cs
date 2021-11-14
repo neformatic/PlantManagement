@@ -1,14 +1,6 @@
-﻿using PlantManagment.DataAccessLayer.Models;
+﻿using PlantManagment.BusinessLogic.Interface;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using PlantManagment.BusinessLogic.Services;
-using System.Linq;
-using PlantManagment.BusinessLogic.Interface;
 
 namespace PlantManagment.Presentation
 {
@@ -39,5 +31,5 @@ namespace PlantManagment.Presentation
             _headOfDepartmentServices.ShowDeleteEmployee(id);
             UpdateEmloyeesList();
         }
-    }   
+    }
 }

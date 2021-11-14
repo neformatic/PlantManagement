@@ -55,15 +55,17 @@ namespace PlantManagment.Presentation
         {
             var accountStatusId = user.AccountStatusId;
             var statusName = _accountServices.GetUserStatusByAccountStatusId(accountStatusId);
+            int adminAccountStatusId = 1;
+            int managerAccountStatusId = 2;
 
-            if (accountStatusId == 1)
+            if (accountStatusId == adminAccountStatusId)
             {
                 MessageBox.Show($"Вход успешно выполнен. Вы вошли как {statusName}.");
                 HeadOfDepartmentForm adminForm = new HeadOfDepartmentForm(_userInfoServices, _headOfDepartmentServices, _projectService);
                 Hide();
                 adminForm.Show();
             }
-            else if (accountStatusId == 2)
+            else if (accountStatusId == managerAccountStatusId)
             {
                 MessageBox.Show($"Вход успешно выполнен. Вы вошли как {statusName}.");
                 ManagerForm HRManagerForm = new ManagerForm(_headOfDepartmentServices);

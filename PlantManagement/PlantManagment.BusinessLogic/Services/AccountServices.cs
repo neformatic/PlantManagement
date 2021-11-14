@@ -37,20 +37,15 @@ namespace PlantManagment.BusinessLogic.Services
 
         public void UserRegistration(string accountLogin, string accountPassword, int accountStatusId)
         {
-            var userLogin = new Account
-            {
-                AccountLogin = accountLogin,
-                AccountPassword = accountPassword,
-                AccountStatusId = accountStatusId
-            };
-            _db.Accounts.Add(userLogin);
+            _repository.SaveUser(accountLogin, accountPassword, accountStatusId);
             _db.SaveChanges();
         }
 
-        public void AddUser(string login, string password, string deparment, string lastName, string firstName, string middleName )
+        public void AddUser(string login, string password, string deparment, string lastName, string firstName, string middleName)
         {
             UserRegistration(login, password);
             _repository.CreateUserInfo(login, deparment, lastName, firstName, middleName);
+            _db.SaveChanges();
         }
 
         public List<PositionModel> GetPositionsList()
@@ -75,8 +70,19 @@ namespace PlantManagment.BusinessLogic.Services
         public string GetUserStatusByAccountStatusId(int statusId)
         {
             var user = _repository.GetUserStatusByAccountStatusId(statusId);
-           
             return user;
+        }
+
+        public string GetRole(int id)
+        {
+            var role = _repository.GetRole(id);
+            return role;
+        }
+
+        public int GetUserId(string login)
+        {
+            var userId = _repository.GetUserId(login);
+            return userId;
         }
     }
 }

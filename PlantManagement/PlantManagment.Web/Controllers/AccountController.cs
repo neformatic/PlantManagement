@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using PlantManagment.Web.Models;
 using PlantManagment.BusinessLogic.Services;
+using PlantManagment.Web.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -11,6 +14,7 @@ namespace PlantManagment.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private string role = string.Empty;
         private HeadOfDepartmentServices _headOfDepartmentServices;
         private AccountServices _accountServices;
         public AccountController(AccountServices accountServices, HeadOfDepartmentServices headOfDepartmentServices)
@@ -25,23 +29,24 @@ namespace PlantManagment.Web.Controllers
             List<string> positionNameList = new List<string>();
             foreach (var item in positionsList)
             {
-                positionNameList.Add(item.PositionName);          
+                positionNameList.Add(item.PositionName);
             }
             return View(positionNameList);
         }
         [HttpPost]
-        public IActionResult Registration(AccountViewModel model)
+        public IActionResult Registration(RegistrationViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (model.Password.Length > 5)
+                var isUser = _accountServices.IsUser(model.Login, model.Password);
+                if (!isUser)
                 {
-                    _accountServices.UserRegistration(model.Login, model.Password);
+                    _accountServices.AddUser(model.Login, model.Password, model.Position, model.LastName, model.FirstName, model.MiddleName);
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("Password", "Password is short");
+                ModelState.AddModelError("Login", "Login is taken");
             }
-            return View(model);
+            return RedirectToAction("Registration");
         }
 
         [HttpGet]
@@ -49,8 +54,10 @@ namespace PlantManagment.Web.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> Authorization(AccountViewModel model)
+        [AllowAnonymous]
+        public IActionResult Authorization(AccountViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -60,26 +67,36 @@ namespace PlantManagment.Web.Controllers
                     ModelState.AddModelError("Password", "Неверный логин или пароль");
                     return View(model);
                 }
+
+                var userId = _accountServices.GetUserId(model.Login);
+                role = _accountServices.GetRole(userId);
                 var claims = new List<Claim>
                 {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, model.Login)
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, model.Login),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
                 };
-
+                
                 ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+                
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
             }
-            return RedirectToAction("Employee", "account");
-        }
-        public IActionResult Employee()
-        {
-            return View();
+            switch (role)
+            {
+                case "Admin":
+                    return RedirectToAction("AdminMenu", "HeadOfDepartment");
+                case "Manager":
+                    return RedirectToAction("ManagerMenu", "Manager"); 
+                case "Default user":
+                    return RedirectToAction("TasksMenu", "Employee");
+                default:
+                    return RedirectToAction("Index", "Home");
+            }
         }
 
-        public IActionResult HeadOfDepartment()
+        public async Task<IActionResult> Logout()
         {
-            return View();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
     }
-
 }

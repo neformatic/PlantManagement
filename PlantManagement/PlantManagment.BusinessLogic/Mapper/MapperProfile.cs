@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PlantManagment.BusinessLogic.Models;
 using PlantManagment.DataAccessLayer.DataModels;
+using PlantManagment.DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,24 +12,17 @@ namespace PlantManagment.BusinessLogic.Mapper
     {
         public MapperProfile()
         {
-            CreateMap<AccountDataModel, AccountModel>();
-            CreateMap<AccountModel, AccountDataModel>();
-            CreateMap<AccountStatusDataModel, AccountStatusModel>();
-            CreateMap<AccountStatusModel, AccountStatusDataModel>();
-            CreateMap<DepartmentDataModel, DepartmentModel>();
-            CreateMap<DepartmentModel, DepartmentDataModel>();
-            CreateMap<EmployeeDataModel, EmployeeModel>();
-            CreateMap<EmployeeModel, EmployeeDataModel>();
-            CreateMap<PositionDataModel, PositionModel>();
-            CreateMap<PositionModel, PositionDataModel>();
-            CreateMap<ProjectDataModel, ProjectModel>();
-            CreateMap<ProjectModel, ProjectDataModel>();
-            CreateMap<TaskDataModel, TaskModel>();
-            CreateMap<TaskModel, TaskDataModel>();
-            CreateMap<UserInfoDataModel, UserInfoModel>();
-            CreateMap<UserInfoModel, UserInfoDataModel>();
-            CreateMap<EmployeeProjectDataModel, EmployeeProjectModel>();
-            CreateMap<EmployeeProjectModel, EmployeeProjectDataModel>();
+            CreateMap<AccountDataModel, AccountModel>().ReverseMap();
+            CreateMap<AccountStatusDataModel, AccountStatusModel>().ReverseMap();
+            CreateMap<DepartmentDataModel, DepartmentModel>().ReverseMap();
+            CreateMap<EmployeeDataModel, EmployeeModel>().ReverseMap();
+            CreateMap<EmployeeTasksDataModel, EmployeeTasksModel>().ReverseMap();
+            CreateMap<PositionDataModel, PositionModel>().ReverseMap();
+            CreateMap<ProjectDataModel, ProjectModel>().ReverseMap();
+            CreateMap<TaskDataModel, TaskModel>().ReverseMap();
+            CreateMap<TaskModel, Task>().ReverseMap();
+            CreateMap<UserInfoDataModel, UserInfoModel>().ReverseMap();
+            CreateMap<EmployeeProjectDataModel, EmployeeProjectModel>().ReverseMap();
         }
     }
 }

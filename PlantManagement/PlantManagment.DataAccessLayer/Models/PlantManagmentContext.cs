@@ -30,7 +30,6 @@ namespace PlantManagment.DataAccessLayer.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 optionsBuilder.UseSqlServer("Server=DESKTOP-QSHVTJH;Database=PlantManagment;Trusted_Connection=True;");
             }
         }

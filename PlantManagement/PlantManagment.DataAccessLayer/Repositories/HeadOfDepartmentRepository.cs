@@ -1,4 +1,5 @@
-﻿using PlantManagment.DataAccessLayer.DataModels;
+﻿using Microsoft.EntityFrameworkCore;
+using PlantManagment.DataAccessLayer.DataModels;
 using PlantManagment.DataAccessLayer.Interface;
 using PlantManagment.DataAccessLayer.Models;
 using System.Collections.Generic;
@@ -99,5 +100,55 @@ namespace PlantManagment.DataAccessLayer.Repositories
             };
             _db.Tasks.Add(taskEmployee);
         }
+
+        public List<EmployeeTasksDataModel> GetEmployeeTasks()
+        {
+            var employees = _db.Employees.ToList();
+            var tasks = _db.Tasks.ToList();
+            foreach (var task in tasks)
+            {
+                _db.Employees.Where(t => t.Id == task.Id).Load();
+                _db.Projects.Where(p => p.Id == task.ProjectId).Load();
+            }
+            List<EmployeeTasksDataModel> employeeTasks= new List<EmployeeTasksDataModel>();
+            foreach (var item in employees)
+            {
+                var employeeTaskModel = new EmployeeTasksDataModel
+                {
+                    FullName = item.LastName + item.FirstName + item.MiddleName,
+                    Tasks = tasks.Where(t => t.EmployeeId == item.Id).Select(t => new TaskDataModel
+                    {
+                        Id = t.Id,
+                        EmployeeId = t.EmployeeId,
+                        ProjectId = t.ProjectId,
+                        TaskName = t.TaskName,
+                        TaskStatus = t.TaskStatus
+                    }).ToList(),
+                    Project = null
+                };
+                employeeTasks.Add(employeeTaskModel);
+            }
+            
+            return employeeTasks;
+        }
     }
 }
+
+
+//var employeeTasks = (from t in _db.Tasks
+//                     join e in _db.Employees on t.EmployeeId equals e.Id
+//                     join p in _db.Projects on t.ProjectId equals p.Id
+//                     select new EmployeeTasksDataModel
+//                     {
+//                         FullName = e.LastName + e.FirstName + e.MiddleName,
+//                         Project = p.ProjectName,
+//                         Tasks = _db.Tasks.Where(i => i.EmployeeId == e.Id).Select(i => new TaskDataModel
+//                         {
+//                             TaskName = i.TaskName,
+//                             Id = i.Id,
+//                             EmployeeId = i.EmployeeId,
+//                             ProjectId = i.ProjectId,
+//                             TaskStatus = i.TaskStatus
+//                         }).ToList()
+//                     }).ToList();
+//return employeeTasks

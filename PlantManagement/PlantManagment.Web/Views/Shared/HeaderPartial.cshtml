@@ -7,6 +7,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+<<<<<<< HEAD
                 <div class="d-flex">
                     <ul class="navbar-nav flex-grow-1">
 
@@ -21,6 +22,25 @@
                         </li>
                     </ul>
                 </div>
+=======
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                    <li class="nav-item">
+                        <input type="button" class="btn btn-outline-primary" value="Sign Up" onclick="location.href='@Url.Action("Registration", "Account")'" />
+                    </li>
+                    <li class="nav-item">
+                        <input type="button" class="btn btn-outline-primary" value="Log In" onclick="location.href='@Url.Action("Authorization", "Account")'" />
+                    </li>
+                    <li class="nav-item">
+                        <input type="button" class="btn btn-outline-primary" value="Log Out" onclick="location.href='@Url.Action("Logout", "Account")'" />
+                    </li>
+                </ul>
+>>>>>>> 63851a315ec8051887d613819941c215fc5740fc
             </div>
         </div>
     </nav>

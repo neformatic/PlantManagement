@@ -115,7 +115,11 @@ namespace PlantManagment.DataAccessLayer.Repositories
             {
                 var employeeTaskModel = new EmployeeTasksDataModel
                 {
+<<<<<<< HEAD
                     FullName = item.LastName + " " + item.FirstName + " " + item.MiddleName,
+=======
+                    FullName = item.LastName + item.FirstName + item.MiddleName,
+>>>>>>> 63851a315ec8051887d613819941c215fc5740fc
                     Tasks = tasks.Where(t => t.EmployeeId == item.Id).Select(t => new TaskDataModel
                     {
                         Id = t.Id,

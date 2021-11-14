@@ -33,7 +33,11 @@ namespace PlantManagment.DataAccessLayer.Repositories
 
         public int GetEmployeeIdByEmployeeName(string employeeName)
         {
+<<<<<<< HEAD
            var employeeId = _db.Employees.Where(e => e.LastName + " " + e.FirstName + " " + e.MiddleName == employeeName).Select(p => p.Id).FirstOrDefault();
+=======
+           var employeeId = _db.Employees.Where(e => e.LastName + e.FirstName + e.MiddleName == employeeName).Select(p => p.Id).FirstOrDefault();
+>>>>>>> 63851a315ec8051887d613819941c215fc5740fc
             return employeeId;
         }
     }
